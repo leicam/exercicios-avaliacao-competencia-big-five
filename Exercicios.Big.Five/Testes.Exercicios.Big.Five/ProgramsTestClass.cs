@@ -15,7 +15,7 @@ namespace Testes.Exercicios.Big.Five
         [TestCategory(c_category)]
         public void BuscaBinaria_DadosValidos_Sucesso()
         {
-            Assert.AreEqual(3, Program.BuscaBinaria(new int[] { 1, 2, 3, 4, 5, 6 }, 4));
+            Assert.AreEqual(3, Program.BinarySearch(new int[] { 1, 2, 3, 4, 5, 6 }, 4));
         }
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace Testes.Exercicios.Big.Five
         [TestCategory(c_category)]
         public void BuscaBinaria_ArrayNaoOrdenado_ArgumentException()
         {
-            Assert.ThrowsException<ArgumentException>(() => Program.BuscaBinaria(new int[] { 6, 1, 5, 2, 3, 4 }, 4));
+            Assert.ThrowsException<ArgumentException>(() => Program.BinarySearch(new int[] { 6, 1, 5, 2, 3, 4 }, 4));
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace Testes.Exercicios.Big.Five
         [TestCategory(c_category)]
         public void BuscaBinaria_ArrayNaoPossuiItemPesquisado_ArgumentException()
         {
-            Assert.ThrowsException<ArgumentException>(() => Program.BuscaBinaria(new int[] { 1, 2, 3, 4, 5, 6 }, 10));
+            Assert.ThrowsException<ArgumentException>(() => Program.BinarySearch(new int[] { 1, 2, 3, 4, 5, 6 }, 10));
         }
 
         [TestMethod]
