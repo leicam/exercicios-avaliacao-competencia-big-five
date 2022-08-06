@@ -33,5 +33,16 @@ namespace Testes.Exercicios.Big.Five
         {
             Assert.ThrowsException<ArgumentException>(() => Program.BuscaBinaria(new int[] { 1, 2, 3, 4, 5, 6 }, 10));
         }
+
+        [TestMethod]
+        [Owner(c_owner)]
+        [TestCategory(c_category)]
+        public void QuickSort_ArrayNumerosPrimos_OrdenarArray()
+        {
+            var esperado = Program.ObterDadosArray(new int[] { 2, 3, 5, 7, });
+            var atual = Program.ObterDadosArray(Program.QuickSort(new int[] { 2, 7, 3, 5 }));
+
+            Assert.AreEqual(esperado, atual);
+        }
     }
 }

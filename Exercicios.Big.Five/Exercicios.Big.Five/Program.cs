@@ -83,7 +83,7 @@ namespace Exercicios.Big.Five
             }
         }
 
-        private static string ObterDadosArray(int[] array)
+        public static string ObterDadosArray(int[] array)
         {
             var dados = string.Empty;
 
@@ -134,12 +134,13 @@ namespace Exercicios.Big.Five
         /// <param name="array"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        private static int[] QuickSort(int[] array)
+        public static int[] QuickSort(int[] array)
         {
             if (array.Length < 2)
                 return array;
 
-            var pivo = array[0];
+            var indice = (array.Length - 1) / 2;
+            var pivo = array[indice];
             var menores = array.Where(x => x < pivo).ToArray();
             var maiores = array.Where(x => x > pivo).ToArray();
             
