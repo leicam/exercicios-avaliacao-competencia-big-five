@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Exercicios.Big.Five
@@ -61,7 +62,17 @@ namespace Exercicios.Big.Five
             {
                 Console.WriteLine("\n");
                 Console.WriteLine("Executando algoritimo Breadth First Search");
-                Console.WriteLine($"{BradthFirstSearch()}");
+
+                var tabela = new Hashtable();
+
+                tabela.Add("Juliano", new string[] { "Monique", "Juarez", "Elizabete", "Sabrina", });
+                tabela.Add("Sabrina", new string[] { "Saint", "Jean", "Lino", "Aparecida", });
+                tabela.Add("Saint", new string[] { "Clara", "Barbara", });
+                tabela.Add("Jean", new string[] { "Brian" });
+                tabela.Add("Clara", new string[0]);
+                tabela.Add("Brian", new string[0]);
+
+                Console.WriteLine($"{BradthFirstSearch(tabela, "Juliano")}");
                 Console.WriteLine("\n");
             }
             catch (Exception ex)
@@ -154,19 +165,12 @@ namespace Exercicios.Big.Five
         ///  existe um caminho do vertice A ate o vertice B?
         ///  qual o menor caminho entre o vertice A ate o vertice B?
         /// </summary>
-        public static string BradthFirstSearch()
+        public static string BradthFirstSearch(Hashtable tabela, string verticeInicial)
         {
             var fila = new Queue();
-            var tabela = new Hashtable();
+            var verificados = new List<string>();
 
-            tabela.Add("Juliano", new string[] { "Monique", "Juarez", "Elizabete", "Sabrina", });
-            tabela.Add("Sabrina", new string[] { "Saint", "Jean", "Lino", "Aparecida", });
-            tabela.Add("Saint", new string[] { "Clara", "Barbara", });
-            tabela.Add("Jean", new string[] { "Brian" });
-            tabela.Add("Clara", new string[0]);
-            tabela.Add("Brian", new string[0]);
-
-            Enfileirar(ref fila, tabela["Juliano"] as string[]);
+            Enfileirar(ref fila, tabela[verticeInicial] as string[]);
 
             while (fila.Count > 0)
             {
@@ -175,7 +179,11 @@ namespace Exercicios.Big.Five
                 if (IsVendedor(pessoa))
                     return $"{pessoa} é um(a) vendedor(a)";
 
+                if (verificados.Contains(pessoa))
+                    continue;
+
                 Enfileirar(ref fila, tabela[pessoa] as string[]);
+                verificados.Add(pessoa);
             }
 
             throw new ArgumentException("Não foi encontrado um vendedor na pesquisa!");
@@ -191,7 +199,7 @@ namespace Exercicios.Big.Five
         }
 
         private static bool IsVendedor(string pessoa)
-            => "Jose".Equals(pessoa.Trim());
+            => "Barbara".Equals(pessoa.Trim());
 
         /// <summary>
         /// Este algoritimo tem como objetivo, encontrar uma posição no array da maneira mais performatica possivel
